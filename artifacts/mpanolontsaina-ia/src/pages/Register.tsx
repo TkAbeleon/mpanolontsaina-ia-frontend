@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
-import { Scale, UserPlus, Loader2 } from "lucide-react";
+import { Scale, UserPlus, Loader2, Eye, EyeOff } from "lucide-react";
 
 export default function Register() {
   const { t, lang } = useI18n();
@@ -18,16 +18,22 @@ export default function Register() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const schema = z.object({
     email: z.string().email(),
     password: z.string().min(8, { message: t("auth.passwordTooShort") }),
+    confirmPassword: z.string().min(8, { message: t("auth.passwordTooShort") }),
     fullName: z.string().min(2)
+  }).refine((data) => data.password === data.confirmPassword, {
+    message: lang === "mg" ? "Tsy mitovy ny tenimiafina" : "Les mots de passe ne correspondent pas",
+    path: ["confirmPassword"],
   });
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: { email: "", password: "", fullName: "" },
+    defaultValues: { email: "", password: "", confirmPassword: "", fullName: "" },
   });
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
@@ -104,11 +110,48 @@ export default function Register() {
                 <FormItem>
                   <FormLabel>{t("auth.password")}</FormLabel>
                   <FormControl>
-                    <Input 
-                      type="password" 
-                      {...field} 
-                      className="transition-all duration-200 focus-visible:shadow-sm"
-                    />
+                    <div className="relative">
+                      <Input 
+                        type={showPassword ? "text" : "password"}
+                        {...field} 
+                        className="transition-all duration-200 focus-visible:shadow-sm pr-10"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword((v) => !v)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                        tabIndex={-1}
+                      >
+                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{lang === 'mg' ? 'Hamafiso ny tenimiafina' : 'Confirmer le mot de passe'}</FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Input 
+                        type={showConfirmPassword ? "text" : "password"}
+                        {...field} 
+                        className="transition-all duration-200 focus-visible:shadow-sm pr-10"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirmPassword((v) => !v)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                        tabIndex={-1}
+                      >
+                        {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

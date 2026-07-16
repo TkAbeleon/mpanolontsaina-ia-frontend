@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
-import { Scale, LogIn, Loader2 } from "lucide-react";
+import { Scale, LogIn, Loader2, Eye, EyeOff } from "lucide-react";
 
 export default function Login() {
   const { t } = useI18n();
@@ -18,6 +18,7 @@ export default function Login() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const schema = z.object({
     email: z.string().email(),
@@ -85,11 +86,22 @@ export default function Login() {
                 <FormItem>
                   <FormLabel>{t("auth.password")}</FormLabel>
                   <FormControl>
-                    <Input 
-                      type="password" 
-                      {...field} 
-                      className="transition-all duration-200 focus-visible:shadow-sm"
-                    />
+                    <div className="relative">
+                      <Input 
+                        type={showPassword ? "text" : "password"}
+                        {...field} 
+                        className="transition-all duration-200 focus-visible:shadow-sm pr-10"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword((v) => !v)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                        tabIndex={-1}
+                        aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                      >
+                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
