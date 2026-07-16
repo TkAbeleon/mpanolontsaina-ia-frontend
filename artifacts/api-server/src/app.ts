@@ -70,7 +70,7 @@ if (process.env.NODE_ENV === "production") {
 
   // SPA fallback — any route not handled above serves index.html.
   // /api/* is already handled and will never reach here.
-  app.get("/*", (_req: Request, res: Response) => {
+  app.get("/*splat", (_req: Request, res: Response) => {
     const indexPath = path.join(frontendDist, "index.html");
     res.sendFile(indexPath);
   });
