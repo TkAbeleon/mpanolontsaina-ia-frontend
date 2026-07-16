@@ -218,8 +218,8 @@ export default function Chat() {
         </div>
 
         {/* ── Input area ───────────────────────────────────────────────────── */}
-        <div className="flex-shrink-0 pb-4 pt-2">
-          <div className="bg-card border border-border rounded-2xl shadow-md overflow-hidden transition-shadow duration-200 focus-within:shadow-lg focus-within:border-primary/40">
+        <div className="flex-shrink-0 pb-6 pt-2 px-2 relative z-10">
+          <div className="glass-chat-input rounded-[1.5rem] overflow-hidden transition-all duration-300 focus-within:shadow-xl focus-within:border-primary/40 focus-within:-translate-y-1">
             <form onSubmit={handleSubmit} className="flex items-end gap-2 p-2">
               <Textarea
                 ref={textareaRef}
@@ -229,20 +229,20 @@ export default function Chat() {
                 placeholder={t("chat.placeholder")}
                 disabled={isLoading}
                 rows={1}
-                className="flex-1 resize-none border-0 bg-transparent shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 text-[15px] leading-relaxed placeholder:text-muted-foreground/60 min-h-[44px] max-h-[160px] py-2.5 px-2"
+                className="flex-1 resize-none border-0 bg-transparent shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 text-[15px] leading-relaxed placeholder:text-foreground/50 min-h-[44px] max-h-[160px] py-2.5 px-3"
               />
               <Button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="h-10 w-10 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm transition-all duration-200 hover:shadow-lg hover:shadow-primary/20 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:hover:scale-100 flex-shrink-0 self-end mb-0.5"
+                className="h-12 w-12 rounded-[1.2rem] bg-gradient-to-br from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground shadow-md transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 active:scale-95 disabled:opacity-40 disabled:hover:translate-y-0 flex-shrink-0 self-end mb-0.5"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-5 h-5 ml-0.5" />
                 <span className="sr-only">{t("chat.send")}</span>
               </Button>
             </form>
           </div>
-          <p className="mt-2 flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground/60 text-center">
-            <AlertCircle className="w-3 h-3 flex-shrink-0" />
+          <p className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground/60 text-center font-medium">
+            <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
             {t("chat.disclaimer")}
           </p>
         </div>
@@ -286,7 +286,7 @@ function MessageBubble({
   return (
     <div
       className={cn(
-        "flex items-start gap-2.5 w-full message-bubble-enter",
+        "flex items-start gap-3 w-full message-bubble-enter",
         isUser ? "flex-row-reverse" : "flex-row"
       )}
       style={{ animationDelay: `${Math.min(index * 0.08, 0.4)}s` }}
@@ -294,10 +294,10 @@ function MessageBubble({
       {/* Avatar — always present on both sides */}
       <div
         className={cn(
-          "w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-1 text-[11px] font-bold select-none",
+          "w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-[11px] font-bold select-none shadow-sm transition-transform hover:scale-110",
           isUser
-            ? "bg-primary text-primary-foreground"
-            : "bg-primary/15 text-primary"
+            ? "bg-gradient-to-br from-primary to-primary/80 text-primary-foreground"
+            : "bg-card border border-primary/20 text-primary"
         )}
       >
         {isUser ? userInitials(user) : "IA"}
@@ -307,18 +307,17 @@ function MessageBubble({
       <div className={cn("flex flex-col gap-2", isUser ? "items-end" : "items-start", "min-w-0 flex-1")}>
         <div
           className={cn(
-            "text-[15px] shadow-sm",
+            "text-[15px] shadow-sm transition-all duration-200 hover:shadow-md",
             isUser
               ? [
-                  "bg-primary text-primary-foreground",
-                  "px-4 py-3 rounded-2xl rounded-tr-md",
-                  // max-w expressed here, on the bubble itself (direct child of flex-1 column)
-                  "max-w-[80%]",
+                  "bg-gradient-to-br from-primary to-primary/90 text-primary-foreground",
+                  "px-5 py-3.5 rounded-2xl rounded-tr-sm",
+                  "max-w-[85%]",
                 ].join(" ")
               : [
-                  "bg-card border border-border text-foreground",
-                  "px-5 py-4 rounded-2xl rounded-tl-md",
-                  "max-w-full",
+                  "glass text-foreground",
+                  "px-6 py-4 rounded-2xl rounded-tl-sm",
+                  "max-w-[95%]",
                 ].join(" ")
           )}
         >

@@ -50,8 +50,12 @@ export default function Login() {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-6 py-12 md:py-24 bg-gradient-to-b from-muted/30 to-background">
-      <div className="w-full max-w-md space-y-8 bg-card border border-border p-8 rounded-3xl shadow-xl shadow-primary/5 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="flex-1 flex flex-col items-center justify-center p-6 py-12 md:py-24 gradient-bg relative overflow-hidden">
+      {/* Halos lumineux décoratifs */}
+      <div className="absolute top-1/4 -left-12 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 -right-12 w-96 h-96 bg-secondary/20 rounded-full blur-[100px] pointer-events-none"></div>
+      
+      <div className="w-full max-w-md space-y-8 glass p-8 rounded-[2rem] shadow-2xl animate-in fade-in slide-in-from-bottom-8 duration-700 relative z-10 card-hover">
         <div className="text-center space-y-2">
           <div className="mx-auto w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110">
             <Scale className="w-6 h-6" />
