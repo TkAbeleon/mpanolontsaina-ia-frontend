@@ -14,7 +14,7 @@ npx tailwindcss init -p
 ## 2. Variables d'environnement
 Fichier `.env` à la racine (Vite) :
 ```
-VITE_API_BASE_URL=http://api.mpanolontsaina-ia.duckdns.org
+VITE_API_BASE_URL=https://api.mpanolontsaina-ia.duckdns.org
 ```
 ⚠️ L'API tourne en **HTTP simple** (pas HTTPS). Si le frontend est servi en HTTPS, certains navigateurs bloquent les appels "mixed content". Solutions :
 1. Demander au backend d'activer HTTPS (recommandé à terme), **ou**
@@ -27,7 +27,7 @@ export default {
   server: {
     proxy: {
       "/api": {
-        target: "http://api.mpanolontsaina-ia.duckdns.org",
+        target: "https://api.mpanolontsaina-ia.duckdns.org",
         changeOrigin: true,
       },
     },

@@ -48,8 +48,8 @@ module.exports = {
 
       // Logs
       error_file: path.join(ROOT, 'logs/error.log'),
-      out_file:   path.join(ROOT, 'logs/out.log'),
-      log_file:   path.join(ROOT, 'logs/combined.log'),
+      out_file: path.join(ROOT, 'logs/out.log'),
+      log_file: path.join(ROOT, 'logs/combined.log'),
       time: true,   // horodatage sur chaque ligne de log
       merge_logs: true,
 
@@ -70,7 +70,7 @@ module.exports = {
         PORT: process.env.PORT || '3000',
 
         // URL de l'API externe — lit EXTERNAL_API_URL depuis .env.
-        EXTERNAL_API_URL: process.env.EXTERNAL_API_URL || 'http://api.mpanolontsaina-ia.duckdns.org',
+        EXTERNAL_API_URL: process.env.EXTERNAL_API_URL || 'https://api.mpanolontsaina-ia.duckdns.org',
 
         // (optionnel) Chemin absolu vers les fichiers buildés du frontend.
         // Laisser vide = chemin relatif automatique depuis dist/index.mjs.

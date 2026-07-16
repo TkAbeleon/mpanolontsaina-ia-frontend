@@ -11,7 +11,7 @@ Assistant juridique IA trilingue (malgache/français, anglais géré côté back
 ## Stack
 
 - React + Vite (TypeScript strict), Tailwind, wouter (routing), TanStack Query
-- Aucun backend/DB local pour cet artifact — c'est un frontend pur consommant une API externe déjà déployée : `http://api.mpanolontsaina-ia.duckdns.org`
+- Aucun backend/DB local pour cet artifact — c'est un frontend pur consommant une API externe déjà déployée : `https://api.mpanolontsaina-ia.duckdns.org`
 
 ## Where things live
 
@@ -22,7 +22,7 @@ Assistant juridique IA trilingue (malgache/français, anglais géré côté back
 
 ## Architecture decisions
 
-- L'API réelle est en HTTP (pas HTTPS) alors que l'aperçu sert le site en HTTPS : un navigateur bloquerait les appels directs ("mixed content"). Solution : `vite.config.ts` proxy `/ext-api` vers `http://api.mpanolontsaina-ia.duckdns.org`, et `client.ts` appelle `/ext-api` par défaut (variable `VITE_API_BASE_URL`, surchageable si besoin).
+- L'API réelle est en HTTP (pas HTTPS) alors que l'aperçu sert le site en HTTPS : un navigateur bloquerait les appels directs ("mixed content"). Solution : `vite.config.ts` proxy `/ext-api` vers `https://api.mpanolontsaina-ia.duckdns.org`, et `client.ts` appelle `/ext-api` par défaut (variable `VITE_API_BASE_URL`, surchageable si besoin).
 - Ce proxy ne fonctionne qu'en développement (serveur Vite). **Un build de production statique n'aura pas de proxy** : il faudra soit servir le frontend derrière un reverse proxy qui relaie `/ext-api`, soit migrer l'API vers HTTPS, avant de déployer en production réelle.
 - Couleurs, textes et client API ont été fournis comme spécification figée par l'équipe backend/design : ils ont été copiés tels quels (adaptés en `.ts`/`.tsx` pour le typage strict) plutôt que réinventés.
 

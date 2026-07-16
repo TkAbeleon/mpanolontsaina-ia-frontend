@@ -4,7 +4,7 @@ import { logger } from "../lib/logger";
 /**
  * Reverse proxy for the external Mpanolontsaina IA API.
  *
- * The real API (http://api.mpanolontsaina-ia.duckdns.org) is HTTP-only,
+ * The real API (https://api.mpanolontsaina-ia.duckdns.org) is HTTP-only,
  * while the frontend is served over HTTPS in deployment. Browsers block HTTPS pages from calling plain HTTP endpoints
  * ("mixed content"), so the frontend never talks to that host directly.
  *
@@ -17,11 +17,11 @@ import { logger } from "../lib/logger";
 /**
  * URL de base de l'API externe.
  * Configurable via la variable d'environnement EXTERNAL_API_URL dans .env.
- * Défaut : http://api.mpanolontsaina-ia.duckdns.org
+ * Défaut : https://api.mpanolontsaina-ia.duckdns.org
  */
 const EXTERNAL_API_ORIGIN =
   process.env["EXTERNAL_API_URL"]?.replace(/\/$/, "") ??
-  "http://api.mpanolontsaina-ia.duckdns.org";
+  "https://api.mpanolontsaina-ia.duckdns.org";
 
 const HOP_BY_HOP_REQUEST_HEADERS = new Set([
   "host",

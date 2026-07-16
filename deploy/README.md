@@ -24,7 +24,7 @@ Express sert directement les fichiers construits par `vite build`.
 - Serveur Debian 11 (Bullseye) ou 12 (Bookworm)
 - Accès root (ou sudo)
 - Git installé
-- Accès réseau sortant vers `http://api.mpanolontsaina-ia.duckdns.org`
+- Accès réseau sortant vers `https://api.mpanolontsaina-ia.duckdns.org`
 
 ---
 
@@ -141,7 +141,7 @@ certbot --nginx -d <votre-domaine.mg>
 |----------------------|-----------------------------------------------|----------------------------------------------------------|
 | `PORT`               | `3000`                                        | Port d'écoute Express                                    |
 | `NODE_ENV`           | `production`                                  | Environnement Node                                       |
-| `EXTERNAL_API_URL`   | `http://api.mpanolontsaina-ia.duckdns.org`    | URL de base de l'API externe (proxy serveur + Vite dev)  |
+| `EXTERNAL_API_URL`   | `https://api.mpanolontsaina-ia.duckdns.org`    | URL de base de l'API externe (proxy serveur + Vite dev)  |
 | `FRONTEND_DIST`      | *(auto)*                                      | Chemin absolu vers `dist/public` si la structure diffère |
 
 ---

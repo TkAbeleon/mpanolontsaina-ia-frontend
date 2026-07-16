@@ -2,20 +2,14 @@
  * MPANOLONTSAINA IA — CLIENT API (SOURCE UNIQUE)
  * ---------------------------------------------------
  * Basé sur : docs/02_contrats_api_auth_users.md et docs/03_contrats_api_chat.md
- * Base URL configurée via variable d'environnement (jamais en dur).
  *
- * L'API externe réelle est en HTTP (pas HTTPS) alors que ce site est servi en
- * HTTPS : un appel direct depuis le navigateur serait bloqué ("mixed
- * content"). On passe donc toujours par un proxy same-origin :
- * - en développement, le serveur Vite proxy "/ext-api" (voir vite.config.ts)
- * - en production (build statique, pas de serveur Vite), on utilise plutôt
- *   "/api/ext-api", que l'artifact API Server relaie côté serveur vers
- *   l'API externe (voir artifacts/api-server/src/routes/ext-api-proxy.ts)
- * Peut être surchargé via VITE_API_BASE_URL si besoin (ex. tests locaux).
+ * Le frontend appelle directement l'API externe.
+ * Configurer VITE_API_BASE_URL dans le .env du frontend (sans slash final).
+ * Exemple : VITE_API_BASE_URL=https://api.mpanolontsaina-ia.duckdns.org
  */
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '/api/ext-api' : '/ext-api');
+  import.meta.env.VITE_API_BASE_URL ?? 'https://api.mpanolontsaina-ia.duckdns.org';
 const API_PREFIX = '/api/v1';
 
 export interface ApiErrorPayload {

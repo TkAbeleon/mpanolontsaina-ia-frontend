@@ -5,10 +5,10 @@
  * Base URL configurée via variable d'environnement (jamais en dur).
  *
  * Exemple de configuration locale :
- *   VITE_API_BASE_URL=http://api.mpanolontsaina-ia.duckdns.org
+ *   VITE_API_BASE_URL=https://api.mpanolontsaina-ia.duckdns.org
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://api.mpanolontsaina-ia.duckdns.org";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://api.mpanolontsaina-ia.duckdns.org";
 const API_PREFIX = "/api/v1";
 
 function getAccessToken() {
