@@ -57,8 +57,8 @@ export default function Login() {
       
       <div className="w-full max-w-md space-y-8 glass p-8 rounded-[2rem] shadow-2xl animate-in fade-in slide-in-from-bottom-8 duration-700 relative z-10 card-hover">
         <div className="text-center space-y-2">
-          <div className="mx-auto w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110">
-            <Scale className="w-6 h-6" />
+          <div className="mx-auto w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110 shadow-sm border border-primary/10">
+            <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain" />
           </div>
           <h1 className="text-3xl font-serif font-bold tracking-tight">{t("auth.loginTitle")}</h1>
           <p className="text-sm text-muted-foreground">{t("app.name")}</p>

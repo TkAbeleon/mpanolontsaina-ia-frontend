@@ -33,8 +33,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-colors duration-300">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="bg-primary text-primary-foreground p-1.5 rounded-lg transition-all duration-300 group-hover:bg-primary/90 group-hover:shadow-lg group-hover:shadow-primary/25 group-hover:scale-105">
-            <Scale className="w-5 h-5" />
+          <div className="bg-primary/10 p-1.5 rounded-lg transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-lg group-hover:shadow-primary/25 group-hover:scale-105">
+            <img src="/logo.png" alt="Mpanolontsaina IA" className="w-6 h-6 object-contain" />
           </div>
           <span className="font-serif font-semibold text-lg hidden sm:inline-block text-primary transition-colors">
             {t("app.name")}
