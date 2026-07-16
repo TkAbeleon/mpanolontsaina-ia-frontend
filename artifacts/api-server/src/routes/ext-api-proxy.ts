@@ -38,7 +38,7 @@ const HOP_BY_HOP_RESPONSE_HEADERS = new Set([
 
 const router: IRouter = Router();
 
-router.all("/ext-api/*", async (req: Request, res: Response) => {
+router.all("/ext-api/:splat(.*)", async (req: Request, res: Response) => {
   const targetPath = req.originalUrl.replace(/^\/api\/ext-api/, "");
   const targetUrl = `${EXTERNAL_API_ORIGIN}${targetPath}`;
 
