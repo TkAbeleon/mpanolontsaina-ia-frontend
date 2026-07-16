@@ -1,6 +1,6 @@
 ---
 name: External HTTP API from HTTPS frontend
-description: How to call a real, plain-HTTP external API from a Replit-hosted HTTPS frontend without browser mixed-content blocks, in both dev and production.
+description: How to call a real, plain-HTTP external API from an HTTPS frontend without browser mixed-content blocks, in both dev and production.
 ---
 
 When a frontend artifact must call a real external backend that only serves plain HTTP (no TLS), the browser blocks direct calls because the page itself is served over HTTPS ("mixed content"). Two different mechanisms are needed because dev and prod are served differently:
@@ -11,4 +11,4 @@ When a frontend artifact must call a real external backend that only serves plai
 
 **Why:** browsers enforce mixed-content blocking regardless of environment; the dev proxy and prod proxy are structurally different because only one of them has a live server process to do the forwarding.
 
-**How to apply:** whenever a project's real backend is external and plain-HTTP while the Replit-hosted frontend is HTTPS-only (dev preview and real deployments both are), reach for this two-path proxy pattern instead of trying to call the external origin directly from the browser.
+**How to apply:** whenever a project's real backend is external and plain-HTTP while the frontend is served over HTTPS, reach for this two-path proxy pattern instead of trying to call the external origin directly from the browser.

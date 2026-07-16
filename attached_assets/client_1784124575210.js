@@ -4,7 +4,7 @@
  * Basé sur : 02_contrats_api_auth_users.md et 03_contrats_api_chat.md
  * Base URL configurée via variable d'environnement (jamais en dur).
  *
- * Sur Replit : créer un fichier .env à la racine avec :
+ * Exemple de configuration locale :
  *   VITE_API_BASE_URL=http://api.mpanolontsaina-ia.duckdns.org
  */
 

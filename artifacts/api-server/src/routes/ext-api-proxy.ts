@@ -5,8 +5,7 @@ import { logger } from "../lib/logger";
  * Reverse proxy for the external Mpanolontsaina IA API.
  *
  * The real API (http://api.mpanolontsaina-ia.duckdns.org) is HTTP-only,
- * while both the Replit preview and any real deployment serve this project
- * over HTTPS. Browsers block HTTPS pages from calling plain HTTP endpoints
+ * while the frontend is served over HTTPS in deployment. Browsers block HTTPS pages from calling plain HTTP endpoints
  * ("mixed content"), so the frontend never talks to that host directly.
  *
  * In development, the frontend's own Vite dev server proxies `/ext-api`.

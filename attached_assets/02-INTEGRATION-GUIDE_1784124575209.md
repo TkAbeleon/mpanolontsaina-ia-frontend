@@ -16,10 +16,10 @@ Fichier `.env` à la racine (Vite) :
 ```
 VITE_API_BASE_URL=http://api.mpanolontsaina-ia.duckdns.org
 ```
-⚠️ L'API tourne en **HTTP simple** (pas HTTPS). Si Replit sert le frontend en HTTPS, certains navigateurs bloquent les appels "mixed content". Solutions :
+⚠️ L'API tourne en **HTTP simple** (pas HTTPS). Si le frontend est servi en HTTPS, certains navigateurs bloquent les appels "mixed content". Solutions :
 1. Demander au backend d'activer HTTPS (recommandé à terme), **ou**
 2. Passer par un proxy Vite en dev (`vite.config.js` → `server.proxy`), **ou**
-3. Servir aussi le frontend Replit en HTTP pendant les tests.
+3. Servir aussi le frontend en HTTP pendant les tests.
 
 ```js
 // vite.config.js (option proxy)
