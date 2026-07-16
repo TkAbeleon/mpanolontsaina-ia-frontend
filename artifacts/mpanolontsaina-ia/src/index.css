@@ -1,0 +1,396 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Sora', sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: 260 33% 97%;
+  --foreground: 250 18% 9%;
+  --border: 258 20% 90%;
+  --input: 258 20% 90%;
+  --ring: 265 56% 40%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 250 18% 9%;
+  --card-border: 258 20% 90%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 250 18% 9%;
+  --popover-border: 258 20% 90%;
+  
+  --primary: 265 56% 40%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 33 74% 56%;
+  --secondary-foreground: 0 0% 100%;
+  
+  --muted: 258 20% 90%;
+  --muted-foreground: 256 11% 47%;
+  
+  --accent: 33 74% 56%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 3 75% 57%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 250 18% 9%;
+  --foreground: 260 33% 97%;
+  --border: 256 11% 47%;
+  --input: 256 11% 47%;
+  --ring: 265 56% 40%;
+  
+  --card: 252 19% 14%;
+  --card-foreground: 260 33% 97%;
+  --card-border: 256 11% 47%;
+  
+  --popover: 252 19% 14%;
+  --popover-foreground: 260 33% 97%;
+  --popover-border: 256 11% 47%;
+  
+  --primary: 265 56% 60%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 33 74% 56%;
+  --secondary-foreground: 0 0% 100%;
+  
+  --muted: 252 19% 14%;
+  --muted-foreground: 256 11% 70%;
+  
+  --accent: 33 74% 56%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 3 75% 57%;
+  --destructive-foreground: 0 0% 100%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+/* Page Transition Animations */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.page-transition-enter {
+  animation: pageEnter 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.page-transition-exit {
+  animation: pageExit 0.2s ease-out forwards;
+}
+
+/* Message Bubble Animations */
+@keyframes messageBubbleIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.message-bubble-enter {
+  animation: messageBubbleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Typing Indicator */
+@keyframes typingDot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+.typing-dot {
+  animation: typingDot 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Enhanced Interactive Elements */
+.interactive-scale {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.interactive-scale:hover {
+  transform: translateY(-1px);
+}
+
+.interactive-scale:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Button Enhancements */
+button, a[role="button"], .button-like {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smooth Shadow Transitions */
+.shadow-smooth {
+  transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card Hover States */
+.card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px hsl(var(--primary) / 0.12);
+}
+
+/* Staggered Fade In for Lists */
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-item {
+  animation: staggerFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.05s; }
+.stagger-item:nth-child(2) { animation-delay: 0.1s; }
+.stagger-item:nth-child(3) { animation-delay: 0.15s; }
+.stagger-item:nth-child(4) { animation-delay: 0.2s; }
+.stagger-item:nth-child(5) { animation-delay: 0.25s; }
+.stagger-item:nth-child(6) { animation-delay: 0.3s; }
+
+/* Refined Focus States */
+*:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  transition: outline-offset 0.2s ease;
+}
+
+/* ── Chat Markdown Renderer ──────────────────────────────────────────────── */
+/* Applied to agent message bubbles only (user bubbles are plain text).       */
+.chat-markdown {
+  line-height: 1.75;
+  font-size: 0.9375rem; /* 15px */
+  color: inherit;
+}
+
+.chat-markdown p {
+  margin: 0 0 0.75em 0;
+}
+.chat-markdown p:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings */
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3,
+.chat-markdown h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  margin: 1.1em 0 0.5em 0;
+  line-height: 1.3;
+}
+.chat-markdown h1 { font-size: 1.2rem; }
+.chat-markdown h2 { font-size: 1.1rem; }
+.chat-markdown h3 { font-size: 1rem; }
+.chat-markdown h4 { font-size: 0.9rem; color: hsl(var(--muted-foreground)); }
+
+/* Bold / Italic */
+.chat-markdown strong {
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+.chat-markdown em {
+  font-style: italic;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Lists */
+.chat-markdown ul,
+.chat-markdown ol {
+  margin: 0.5em 0 0.75em 0;
+  padding-left: 1.4em;
+}
+.chat-markdown ul { list-style-type: disc; }
+.chat-markdown ol { list-style-type: decimal; }
+.chat-markdown li {
+  margin-bottom: 0.35em;
+  line-height: 1.65;
+}
+.chat-markdown li > ul,
+.chat-markdown li > ol {
+  margin-top: 0.25em;
+  margin-bottom: 0;
+}
+
+/* Horizontal rule */
+.chat-markdown hr {
+  border: none;
+  border-top: 1px solid hsl(var(--border));
+  margin: 1em 0;
+}
+
+/* Blockquote */
+.chat-markdown blockquote {
+  border-left: 3px solid hsl(var(--primary) / 0.4);
+  padding-left: 0.9em;
+  margin: 0.75em 0;
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
+}
+
+/* Inline code */
+.chat-markdown code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em;
+  background: hsl(var(--muted) / 0.7);
+  border: 1px solid hsl(var(--border));
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+/* Code blocks */
+.chat-markdown pre {
+  background: hsl(var(--muted) / 0.6);
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  padding: 0.85em 1em;
+  overflow-x: auto;
+  margin: 0.75em 0;
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+.chat-markdown pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Tables (remark-gfm) */
+.chat-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75em 0;
+  font-size: 0.875rem;
+}
+.chat-markdown th,
+.chat-markdown td {
+  border: 1px solid hsl(var(--border));
+  padding: 0.45em 0.75em;
+  text-align: left;
+}
+.chat-markdown th {
+  background: hsl(var(--muted) / 0.5);
+  font-weight: 600;
+}
+.chat-markdown tr:nth-child(even) td {
+  background: hsl(var(--muted) / 0.2);
+}
+
+/* Links */
+.chat-markdown a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.15s;
+}
+.chat-markdown a:hover {
+  opacity: 0.75;
+}

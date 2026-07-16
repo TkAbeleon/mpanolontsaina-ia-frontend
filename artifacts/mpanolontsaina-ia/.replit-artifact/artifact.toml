@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Mpanolontsaina IA"
+version = "1.0.0"
+id = "artifacts/mpanolontsaina-ia"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19801
+
+[services.development]
+run = "pnpm --filter @workspace/mpanolontsaina-ia run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mpanolontsaina-ia", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/mpanolontsaina-ia/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19801"
+BASE_PATH = "/"
